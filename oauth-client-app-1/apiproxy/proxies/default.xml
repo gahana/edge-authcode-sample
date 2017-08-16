@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <DefaultFaultRule name="DefaultFaultRule">
+        <Step>
+            <FaultRules/>
+            <Name>AM-ServerError</Name>
+        </Step>
+        <AlwaysEnforce>false</AlwaysEnforce>
+    </DefaultFaultRule>
+    <Description/>
+    <FaultRules>
+        <FaultRule name="InvalidRequest">
+            <Condition>(fault.name = "InvalidAccessToken")</Condition>
+            <Step>
+                <FaultRules/>
+                <Name>AM-GoAuthorize</Name>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <Flows>
+        <Flow name="Resource">
+            <Description>Access a resource</Description>
+            <Request>
+                <Step>
+                    <Name>OA-Validate</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <FaultRules/>
+                    <Name>AM-Response</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/resource") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Callback">
+            <Description>Callback to get token given auth code</Description>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>BA-ClientCreds</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>SC-GetToken</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>EV-GetTokens</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>JS-GetState</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <FaultRules/>
+                    <Name>SC-RetryWithToken</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/callback") and (request.verb = "GET")</Condition>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <FaultRules/>
+                <Name>JS-SetConfig</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <HTTPProxyConnection>
+        <BasePath>/oauth-sample/app1</BasePath>
+        <Properties/>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="noroute"/>
+</ProxyEndpoint>

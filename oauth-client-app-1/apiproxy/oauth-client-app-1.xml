@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="3" name="oauth-client-app-1">
+    <Basepaths>/oauth-sample/app1</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1502900187992</CreatedAt>
+    <CreatedBy>ssudhindra@google.com</CreatedBy>
+    <DisplayName>oauth-client-app-1</DisplayName>
+    <LastModifiedAt>1502900187992</LastModifiedAt>
+    <LastModifiedBy>ssudhindra@google.com</LastModifiedBy>
+    <Policies>
+        <Policy>AM-GoAuthorize</Policy>
+        <Policy>AM-Response</Policy>
+        <Policy>AM-ServerError</Policy>
+        <Policy>BA-ClientCreds</Policy>
+        <Policy>EV-GetTokens</Policy>
+        <Policy>JS-GetState</Policy>
+        <Policy>JS-SetConfig</Policy>
+        <Policy>OA-Validate</Policy>
+        <Policy>SC-GetToken</Policy>
+        <Policy>SC-RetryWithToken</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://GetState.js</Resource>
+        <Resource>jsc://SetConfig.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints/>
+</APIProxy>

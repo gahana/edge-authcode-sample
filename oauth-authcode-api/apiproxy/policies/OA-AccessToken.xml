@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 async="false" continueOnError="false" enabled="true" name="OA-AccessToken">
+    <DisplayName>OA-AccessToken</DisplayName>
+    <Code>request.formparam.code</Code>
+    <ExpiresIn>600000</ExpiresIn>
+    <GrantType>request.formparam.grant_type</GrantType>
+    <Operation>GenerateAccessToken</Operation>
+    <SupportedGrantTypes>
+        <GrantType>authorization_code</GrantType>
+    </SupportedGrantTypes>
+    <GenerateResponse enabled="true"/>
+</OAuthV2>
