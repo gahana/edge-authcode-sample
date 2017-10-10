@@ -17,7 +17,7 @@ if [ "$1" = "oauth" ] || [ "$1" = "all" ] ; then
 fi
 
 if [ "$1" = "login" ] || [ "$1" = "all" ] ; then
-	apigeetool deployproxy -u $EDGE_USERNAME -p $EDGE_PASSWORD -o $ORG -e $ENV -n oauth-login-app -d ./oauth-login-app -R	
+	apigeetool deployproxy -u $EDGE_USERNAME -p $EDGE_PASSWORD -o $ORG -e $ENV -n oauth-login-app -d ./oauth-login-app -R
 fi
 
 if [ "$1" = "app1" ] || [ "$1" = "all" ] ; then

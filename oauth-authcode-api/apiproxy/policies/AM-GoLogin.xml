@@ -6,7 +6,7 @@
     <Remove/>
     <Set>
         <Headers>
-            <Header name="Location">{oauth.login_req}</Header>
+            <Header name="Location">{oauth.login_req}&amp;app_name={verifyapikey.VAK-VerifyClientId.developer.app.name}</Header>
         </Headers>
         <StatusCode>302</StatusCode>
     </Set>

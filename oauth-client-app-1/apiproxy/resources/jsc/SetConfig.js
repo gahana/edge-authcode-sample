@@ -1,7 +1,7 @@
 // Set the below variables as per env
 var client_id = '<app 1 client id>';
-var client_secret = 'app 1 client secret';
-var scope = 'write';
+var client_secret = '<app 1 client secret>';
+var scope = 'scope1 scope2 scope3';
 var callback_path = '/oauth-sample/app1/callback';
 var authorize_path = '/oauth-sample/oauth/authorize';
 var resource_path = 'oauth-sample/app1/resource'; // No leading '/''

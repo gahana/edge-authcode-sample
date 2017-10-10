@@ -13,6 +13,7 @@
         <Policy>JS-SetConfig</Policy>
         <Policy>OA-AccessToken</Policy>
         <Policy>OA-AuthCode</Policy>
+        <Policy>VAK-VerifyClientId</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>

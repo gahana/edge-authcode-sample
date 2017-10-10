@@ -10,19 +10,28 @@ app.set('view engine', 'pug');
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', function(req, res) {
-  res.render('login', { 
-    client_id: req.query.client_id,
-    redirect_uri: req.query.redirect_uri,
-    scope: req.query.scope,
-    state: req.query.state
-  });
+  var params = getParams(req.query);
+  params.message = "";
+  res.render('login', params);
 });
 
 app.post('/', function(req, res) {
   if ("friend" === req.body.username) {
+    var params = getParams(req.body);
+    params.scopeList = params.scope.split(" ");
+    res.render('consent', params);
+  } else {
+    var params = getParams(req.body);
+    params.message = "Only a friend can enter";
+    res.render('login', params);
+  }
+});
+
+app.post('/consent', function(req, res) {
+  if ("allow" === req.body.consent) {
     getAuthCode(req, res);
   } else {
-    res.status(401).send("Only a friend can enter");
+    res.status(401).send("User denied consent");
   }
 });
 
@@ -40,18 +49,24 @@ function getAuthCode(parentRequest, parentResponse) {
   });
 }
 
-function authCodeOptions(request) {
-  var params = {};
+function authCodeOptions(req) {
+  var params = getParams(req.body);
   params.response_type = 'code';
-  params.client_id = request.body.client_id;
-  params.redirect_uri = request.body.redirect_uri;
-  params.scope = request.body.scope;
-  params.state = request.body.state;
   return {
     url: AUTH_URL,
     method: 'POST',
     qs: params
   };
+}
+
+function getParams(ref) {
+  var params = {};
+  params.client_id = ref.client_id;
+  params.redirect_uri = ref.redirect_uri;
+  params.scope = ref.scope;
+  params.state = ref.state;
+  params.app_name = ref.app_name;
+  return params;
 }
 
 app.get('/hello', function(req, res) {

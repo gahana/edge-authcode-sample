@@ -4,6 +4,8 @@ html(lang="en")
     title Login App - Sign In Page
   body
     h1 Login App - Sign In Page
+    if message
+        p #{message}
     form(method='POST')
         label(for='username') Username:
         input(type='text', placeholder='Enter your username' name='username' value='friend')
@@ -15,5 +17,6 @@ html(lang="en")
         input(type='hidden', name='redirect_uri', value=redirect_uri)
         input(type='hidden', name='scope', value=scope)
         input(type='hidden', name='state', value=state)
+        input(type='hidden', name='app_name', value=app_name)
         button(type='submit') Submit
 

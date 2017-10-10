@@ -29,7 +29,7 @@ ENV="env name"
 - `oauth-login-app/apiproxy/resources/node/app.js` : Update `AUTH_URL` variable with your Apigee Edge organization and environment
 - Deploy `oauth-authcode-api` proxy first with `$ ./deploy.sh oauth`
 - Create an API product `oauth-product` with access to all resources (`/**`) in `oauth-authcode-api` proxy
-- Create two applications `client-app-` and `client-app-2` based on the above API product. Create developer if needed.
+- Create two applications `client-app-1` and `client-app-2` based on the above API product. Create developer if needed.
 - The applications should have callback URL `https://org-env.apigee.net/oauth-sample/app1/callback` and `https://org-env/oauth-sample/app2/callback`
 - Update the `Consumer Key` and `Consumer Secret` of these two apps as `client_id` and `client_secret` on `apiproxy/resources/jsc/SetConfig.js` file in `oauth-client-app-1` and `oauth-client-app-1`
 - Optionally, update the `claims` variable in `oauth-authcode-api/apiproxy/resources/jsc/SetConfig.js` but make sure the `sub` claims is present.
